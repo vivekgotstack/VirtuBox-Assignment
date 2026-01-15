@@ -64,7 +64,7 @@ function StudentList() {
         );
 
     return (
-        <div className="min-h-screen bg-yellow-200 p-8">
+        <div className="min-h-screen bg-red-300 p-8">
             <div className="max-w-6xl mx-auto space-y-12">
                 <StudentForm onStudentCreated={fetchStudents} />
 
