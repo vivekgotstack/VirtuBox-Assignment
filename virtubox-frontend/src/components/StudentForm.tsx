@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { getRandomStudent } from "@/api/randomUserApi";
 import { Spinner } from "./ui/spinner";
 import { Button } from "./ui/button";
+import { ConfettiButton } from "./ui/confetti";
 
 type Props = {
     onStudentCreated: () => void;
@@ -93,24 +94,31 @@ function StudentForm({ onStudentCreated }: Props) {
                     onChange={(e) => setAge(e.target.value)}
                 />
 
-                <button
-                    disabled={loading}
-                    className="w-full border-4 border-black bg-white px-6 py-3 font-black shadow-[4px_4px_0_0_#000] active:translate-x-1 active:translate-y-1 active:shadow-none disabled:opacity-50"
-                >
-                    {loading ?
-                        (<Button disabled variant={"ghost"} className="text-lg">
-                            <Spinner/>
+                <div className="w-full">
+                    {loading ? (
+                        <Button
+                            disabled
+                            variant="ghost"
+                            className="w-full border-4 rounded-none border-black bg-white px-6 py-6 font-black text-lg shadow-[4px_4px_0_0_#000] opacity-50"
+                        >
+                            <Spinner />
                             Loading...
-                        </Button>)
-                        : "ADD"}
-                </button>
+                        </Button>
+                    ) : (
+                        <ConfettiButton
+                            className="w-full rounded-none border-4 hover:cursor-pointer border-black bg-white px-6 py-6 font-black text-lg shadow-[4px_4px_0_0_#000] active:translate-x-1 active:translate-y-1 active:shadow-none"
+                        >
+                            ADD
+                        </ConfettiButton>
+                    )}
+                </div>
 
                 <button
                     type="button"
                     onClick={fillRandomStudent}
                     disabled={loading}
                     className="w-full border-4 border-black bg-blue-300 px-6 py-3 font-black shadow-[4px_4px_0_0_#000]
-                        active:translate-x-1 active:translate-y-1 active:shadow-none disabled:opacity-50"
+                        active:translate-x-1 active:translate-y-1 active:shadow-none disabled:opacity-50 hover:cursor-pointer"
                 >
                     GENERATE RANDOM STUDENT
                 </button>
